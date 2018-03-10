@@ -28,7 +28,7 @@ function display_message() {
 
 //function to make forms very secure using MD5
 function token_generator() {
- md5(uniqid(mt_rand(), true));
+$token = $_SESSION['token'] =  md5(uniqid(mt_rand(), true));
 }
 
 
