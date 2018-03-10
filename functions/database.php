@@ -18,7 +18,7 @@ return mysqli_query($con, $query);
 function confirm($result) {
 	global $con;
 	if(!$result) {
-		die("QUERY FAILED", mysqli_error($con));
+		die("QUERY FAILED" . mysqli_error($con));
 	}
 }
 

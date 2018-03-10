@@ -11,6 +11,18 @@
 		<h1 class="text-center"> Home Page</h1>
 	</div>
 
+	<?php
+	$sql = "SELECT * FROM Users";
+	$result = query($sql);
+	confirm($result);
+	$row = fetch_array($result);
+
+	echo $row['Username'];
+
+
+
+ ?>
+
 	<?php include ("includes/footer.php.php") ?>
 
 	
