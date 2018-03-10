@@ -132,7 +132,11 @@ function register_user($first_name, $last_name, $username, $email, $password) {
 	if(email_exists($email)) {
 		return false;
 	} else if ($username($username)) {
-
+		return false;
+	} else {
+		$password   = md5($password);
+		$validation = md5($username + microtime());
+		$sql = "INSERT INTO users(first_name, last_name, username, email, password, validation_code, 0)";
 	}
 }
 
