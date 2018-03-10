@@ -12,16 +12,13 @@
 	</div>
 
 	<?php
-	$sql = "SELECT * FROM Users";
+	$sql = "SELECT * FROM users";
 	$result = query($sql);
 	confirm($result);
 	$row = fetch_array($result);
 
-	echo $row['Username'];
-
-
-
- ?>
+	echo $row['username'];
+	?>
 
 	<?php include ("includes/footer.php.php") ?>
 
