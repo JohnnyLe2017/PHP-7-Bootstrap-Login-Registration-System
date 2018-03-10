@@ -6,7 +6,7 @@ include ("database.php");
 include ("functions.php");
 
 if($con) {
-	echo "Connection is successful";
+	//echo "Connection is successful";
 }
 
 

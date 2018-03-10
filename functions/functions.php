@@ -33,6 +33,28 @@ $token = $_SESSION['token'] =  md5(uniqid(mt_rand(), true));
 
 return $token;
 
+//check if an email address already exists in database
+function email_exists($email) {
+	$sql = "SELECT id FROM users WHERE email = '$email'";
+	$result = query($sql);
+	if(row_count($result) === 1) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+//check if a username already exists in database
+function username_exists($username) {
+	$sql = "SELECT id FROM users WHERE username = '$username'";
+	$result = query($sql);
+	if(row_count($result) === 1) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 
 /* Validation functions - validates users */
 function validate_user_registration() {
@@ -40,7 +62,7 @@ function validate_user_registration() {
 
 	$errors = [];
 	$min = 3;
-	$max = 20;
+	$max = 40;
 
 	if($_SERVER['REQUEST_METHOD'] == "POST") {
 		$first_name       = clean($_POST['first_name']);
@@ -64,6 +86,30 @@ function validate_user_registration() {
 
 		if(strlen($last_name) > $max) {
 			$errors[] = "Your last name cannot be more than {$max} characters";
+		}
+
+		if(strlen($username) < $min) {
+			$errors[] = "Your username cannot be less than {$min} characters";
+		}
+
+		if(strlen($username) > $max) {
+			$errors[] = "Your username cannot be more than {$max} characters";
+		}
+
+		if(username_exists($username)) {
+			$errors[] = "This username is already registered";
+		}
+
+		if(email_exists($email)) {
+			$errors[] = "This email address is already registered";
+		}
+
+		if(strlen($email) > $max) {
+			$errors[] = "Your email address cannot be more than {$max} characters";
+		}
+
+		if($password !== $confirm_password) {
+			$errors[] = "Your password does not match";
 		}
 
 		if(!empty($errors)) {
