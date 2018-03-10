@@ -2,7 +2,10 @@
 
 $con = mysqli_connect('localhost', 'root', '', 'login_db');
 
-
+//count row of records inside table of database
+function row_count($result) {
+	return mysqli_num_rows($result);
+}
 
 //function to escape data
 function escape($string) {
