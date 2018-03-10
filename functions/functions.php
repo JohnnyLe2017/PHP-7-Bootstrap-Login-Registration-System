@@ -55,7 +55,7 @@ function validate_user_registration() {
 		}
 
 		if(strlen($first_name) > $max) {
-			$errors[] = "Your first name cannot be less than {$max} characters";
+			$errors[] = "Your first name cannot be more than {$max} characters";
 		}
 
 		if(strlen($last_name) < $min) {
@@ -63,7 +63,7 @@ function validate_user_registration() {
 		}
 
 		if(strlen($last_name) > $max) {
-			$errors[] = "Your last name cannot be less than {$max} characters";
+			$errors[] = "Your last name cannot be more than {$max} characters";
 		}
 
 		if(!empty($errors)) {
