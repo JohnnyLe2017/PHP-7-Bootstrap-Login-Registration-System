@@ -34,6 +34,8 @@ $token = $_SESSION['token'] =  md5(uniqid(mt_rand(), true));
 return $token;
 
 
+/* Validation functions */
+
 
 
 
