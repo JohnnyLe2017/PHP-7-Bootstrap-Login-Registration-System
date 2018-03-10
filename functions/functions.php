@@ -62,7 +62,7 @@ function validate_user_registration() {
 
 	$errors = [];
 	$min = 3;
-	$max = 40;
+	$max = 50;
 
 	if($_SERVER['REQUEST_METHOD'] == "POST") {
 		$first_name       = clean($_POST['first_name']);
@@ -120,7 +120,21 @@ function validate_user_registration() {
 	}
 }
 
+function register_user($first_name, $last_name, $username, $email, $password) {
 
+	//escape data to prevent sql injection
+	$first_name      = escape($first_name);
+	$last_name       = escape($last_name);
+	$username        = escape($username);
+	$email           = escape($email);
+	$password        = escape($password);
+
+	if(email_exists($email)) {
+		return false;
+	} else if ($username($username)) {
+
+	}
+}
 
 
 
