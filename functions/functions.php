@@ -1,6 +1,6 @@
 <?php
 
-//These are helper functions
+/****************helper functions ********************/
 
 //clear things coming from form
 function clean($string) {
@@ -29,15 +29,28 @@ function display_message() {
 //function to make forms very secure using MD5
 function token_generator() {
 $token = $_SESSION['token'] =  md5(uniqid(mt_rand(), true));
+return $token;
 }
 
-return $token;
+function validation_errors($error_message) {
+	$error_message = <<<DELIMITER
+
+<div class="alert alert-danger alert-dismissible" role="alert">
+  	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  	<strong>Warning!</strong> $error_message
+ </div>
+DELIMITER;
+
+return $error_message;
+}
+
+
 
 //check if an email address already exists in database
 function email_exists($email) {
 	$sql = "SELECT id FROM users WHERE email = '$email'";
 	$result = query($sql);
-	if(row_count($result) === 1) {
+	if(row_count($result) == 1) {
 		return true;
 	} else {
 		return false;
@@ -48,7 +61,7 @@ function email_exists($email) {
 function username_exists($username) {
 	$sql = "SELECT id FROM users WHERE username = '$username'";
 	$result = query($sql);
-	if(row_count($result) === 1) {
+	if(row_count($result) == 1) {
 		return true;
 	} else {
 		return false;
@@ -75,6 +88,7 @@ function validate_user_registration() {
 		$email            = clean($_POST['email']);
 		$password         = clean($_POST['password']);
 		$confirm_password = clean($_POST['confirm_password']);
+
 
 		if(strlen($first_name) < $min) {
 			$errors[] = "Your first name cannot be less than {$min} characters";
@@ -118,17 +132,23 @@ function validate_user_registration() {
 
 		if(!empty($errors)) {
 			foreach ($errors as $error) {
-				echo $error;
+				echo validation_errors($error);
 			}
 		} else {
 			if(register_user($first_name, $last_name, $username, $email, $password)) {
 				set_message("<p class='bg-success text-center'>Please check your email for the activation link</p>");
 				redirect("index.php");
 				
+			} else {
+				set_message("<p class='bg-danger text-center'>Sorry we could not register the user</p>");
+				redirect("index.php");
 			}
 		}
 	}
 }
+
+/****************Register user functions ********************/
+
 
 function register_user($first_name, $last_name, $username, $email, $password) {
 
