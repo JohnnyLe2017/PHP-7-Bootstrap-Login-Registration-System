@@ -159,9 +159,8 @@ function register_user($first_name, $last_name, $username, $email, $password) {
 
 		return true;
 	}
-} else {
-	return false;
-}
+} 
+
 
 
 
