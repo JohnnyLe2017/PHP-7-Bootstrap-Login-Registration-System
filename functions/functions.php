@@ -144,7 +144,7 @@ function register_user($first_name, $last_name, $username, $email, $password) {
 	} else if (username_exists($username)) {
 		return false;
 	} else {
-		$password        = md5($password);
+		$password        = password_hash($password, PASSWORD_BCRYPT, array('cost'=>12));
 		$validation_code = md5($username + microtime());
 		$sql = "INSERT INTO users(first_name, last_name, username, email, password, validation_code, active)";
 		$sql.= " VALUES('$first_name', '$last_name', '$username', '$email', '$password', '$validation_code', 0)";
