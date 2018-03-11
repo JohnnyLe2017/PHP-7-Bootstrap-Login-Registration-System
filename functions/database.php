@@ -14,8 +14,8 @@ function escape($string) {
 }
 
 function query($query) {
-global $con;
-return mysqli_query($con, $query);
+	global $con;
+	return mysqli_query($con, $query);
 }
 
 function confirm($result) {
@@ -27,7 +27,7 @@ function confirm($result) {
 
 function fetch_array($result) {
 	global $con;
-	 return mysqli_fetch_array($result);
+	return mysqli_fetch_array($result);
 }
 
 

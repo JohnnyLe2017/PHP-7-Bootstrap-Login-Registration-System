@@ -116,6 +116,10 @@ function validate_user_registration() {
 			foreach ($errors as $error) {
 				echo $error;
 			}
+		} else {
+			if(register_user($first_name, $last_name, $username, $email, $password)) {
+				echo "User is registered";
+			}
 		}
 	}
 }
@@ -131,12 +135,16 @@ function register_user($first_name, $last_name, $username, $email, $password) {
 
 	if(email_exists($email)) {
 		return false;
-	} else if ($username($username)) {
+	} else if (username_exists($username)) {
 		return false;
 	} else {
-		$password   = md5($password);
-		$validation = md5($username + microtime());
-		$sql = "INSERT INTO users(first_name, last_name, username, email, password, validation_code, 0)";
+		$password        = md5($password);
+		$validation_code = md5($username + microtime());
+		$sql = "INSERT INTO users(first_name, last_name, username, email, password, validation_code, active)";
+		$sql.= " VALUES('$first_name', '$last_name', '$email', '$password', '$validation_code', 0)";
+		$result = query($sql);
+		confirm($result);
+		return true;
 	}
 }
 
