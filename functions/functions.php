@@ -212,33 +212,47 @@ function activate_user() {
 /****************Validate user functions ********************/
 
 
-function validate_user_login() {
-
+function validate_user_login(){
 
 	$errors = [];
+
 	$min = 3;
 	$max = 50;
 
-if($_SERVER['REQUEST_METHOD'] == "POST") {
-	$email            = clean($_POST['email']);
-	$password         = clean($_POST['password']);
-}
+	if($_SERVER['REQUEST_METHOD'] == "POST") {
+		$email 		= clean($_POST['email']);
+		$password	= clean($_POST['password']);
+		$remember   = isset($_POST['remember']);
 
-if(empty(email)) {
-	$errors[] = "Email field cannot be empty";
-}
+		if(empty($email)) {
+			$errors[] = "Email field cannot be empty";
+		}
 
-if(empty(password)) {
-	$errors[] = "Password field cannot be empty";
-}
+		if(empty($password)) {
+			$errors[] = "Password field cannot be empty";
+		}
 
-if(!empty($errors)) {
-	foreach ($errors as $error) {
-		echo validation_errors($error);
+		if(!empty($errors)) {
+				foreach ($errors as $error) {
+					echo validation_errors($error);
+				}
+			} else {
+				if(login_user($email, $password, $remember)) {
+					redirect("admin.php");
+				} else {
+					echo validation_errors("Your credentials are not correct");
+					}
+				}
+			}
 	}
-} else {
-	
-}
+
+
+
+
+
+
+
+
 
 
  ?>
