@@ -138,7 +138,7 @@ function validate_user_registration() {
 			if(register_user($first_name, $last_name, $username, $email, $password)) {
 				set_message("<p class='bg-success text-center'>Please check your email for the activation link</p>");
 				redirect("index.php");
-				
+
 			} else {
 				set_message("<p class='bg-danger text-center'>Sorry we could not register the user</p>");
 				redirect("index.php");
@@ -179,7 +179,7 @@ function register_user($first_name, $last_name, $username, $email, $password) {
 
 		return true;
 	}
-} 
+}
 
 /****************Activate user functions ********************/
 
@@ -205,11 +205,40 @@ function activate_user() {
 	set_message("<p class='bg-danger'>Your account could not be activated.</p>");
 	redirect("login.php");
 				}
-			} 
+			}
 		}
 }
 
+/****************Validate user functions ********************/
 
+
+function validate_user_login() {
+
+
+	$errors = [];
+	$min = 3;
+	$max = 50;
+
+if($_SERVER['REQUEST_METHOD'] == "POST") {
+	$email            = clean($_POST['email']);
+	$password         = clean($_POST['password']);
+}
+
+if(empty(email)) {
+	$errors[] = "Email field cannot be empty";
+}
+
+if(empty(password)) {
+	$errors[] = "Password field cannot be empty";
+}
+
+if(!empty($errors)) {
+	foreach ($errors as $error) {
+		echo validation_errors($error);
+	}
+} else {
+	
+}
 
 
  ?>
