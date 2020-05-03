@@ -1,8 +1,8 @@
 <?php include ("includes/header.php") ?>
 
 	<div class="row">
-		<div class="col-lg-6 col-lg-offset-3">	
-		
+		<div class="col-lg-6 col-lg-offset-3">
+
 			<div class="alert alert-success alert-dismissible" role="alert">
 				<button type="button" class="close" data-dismiss="alert">
 					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
@@ -14,7 +14,6 @@
     <div class="row">
 				<div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
 					<div class="alert-placeholder">
-	
 					</div>
 					<div class="panel panel-success">
 						<div class="panel-body">
@@ -30,11 +29,11 @@
 
 												<div class="col-lg-3 col-lg-offset-2 col-md-3 col-md-offset-2 col-sm-3 col-sm-offset-2  col-xs-6">
 													<input type="submit" name="code-cancel" id="code-cancel" tabindex="2" class="form-control btn btn-danger" value="Cancel" />
-			
+
 												</div>
 												<div class="col-lg-3 col-lg-offset-2 col-md-3 col-md-offset-2 col-sm-3 col-sm-offset-2 col-xs-6">
 													<input type="submit" name="code-submit" id="recover-submit" tabindex="2" class="form-control btn btn-success" value="Continue" />
-													
+
 												</div>
 
 											</div>
@@ -47,5 +46,5 @@
 					</div>
 				</div>
 			</div>
-	
+
 	<?php include ("includes/footer.php.php") ?>

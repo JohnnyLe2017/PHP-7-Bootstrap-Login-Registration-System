@@ -1,15 +1,6 @@
 <?php include ("includes/header.php") ?>
   <?php include ("includes/navigation.php") ?>
 
-	
-
-	<div class="row">
-		<div class="col-lg-6 col-lg-offset-3">
-
-	
-								
-		</div>
-	</div>
     	<div class="row">
 			<div class="col-md-6 col-md-offset-3">
 				<div class="panel panel-login">
@@ -56,12 +47,11 @@
 										</div>
 									</div>
 								</form>
-								
+
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
 		</div>
 	<?php include ("includes/footer.php.php") ?>
